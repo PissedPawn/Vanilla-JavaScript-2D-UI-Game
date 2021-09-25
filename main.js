@@ -8,6 +8,8 @@ let optionsButton = document.getElementById("options");
 let game = new Game("canvas", 500, 500, "/black.png");
 let enemy = new Enemy(1, new Vector2(100, 100), 32, 45, "/police/", 100);
 let ctx = game.ctx;
+let clickAudio = new Audio();
+clickAudio.src = "/sounds/buttonClick.wav";
 
 const clickedPlay = () => {
   playButton.style.visibility = "hidden";
@@ -16,11 +18,22 @@ const clickedPlay = () => {
   optionsButton.style.left = "0px";
   quitButton.style.left = "300px";
   playClicked = true;
+  configButtons();
 };
-const clickedQuit = () => {};
+const playAudio = () => {
+  clickAudio.play();
+};
+
+let buttons = document.getElementsByTagName("button");
+
+const configButtons = () => {
+  for (let i = 0; i < buttons.length; i++) {
+    let button = buttons[i];
+    button.addEventListener("mouseenter", playAudio);
+  }
+};
 
 playButton.addEventListener("click", clickedPlay);
-quitButton.addEventListener("click", clickedQuit);
 
 let fpsInterval, startTime, now, then, elapsed;
 
@@ -49,6 +62,7 @@ function animate() {
     then = now - (elapsed % fpsInterval);
     if (playClicked) {
       game.drawGameScreen();
+      
       return;
     }
     game.drawStartScene();
