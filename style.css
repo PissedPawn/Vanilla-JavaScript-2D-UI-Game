@@ -1,0 +1,65 @@
+#canvas {
+    width: 500px;
+    height: 500px;
+   
+    background: linear-gradient(blue, red);
+    position: absolute;
+    top:50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width:500px;
+    height: 600px;
+    position: absolute;
+    background:linear-gradient(to right, red,white, blue);
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+button {
+   visibility:visible;
+    top: 250px;
+    left: 150px;
+    height: 50px;
+    width: 200px;
+    background:linear-gradient(to left, red, blue, blue );
+    color: red;
+    font-style: italic;
+    font-size: 20px;
+    position: relative;
+    
+}
+
+
+
+button:active {
+    background:linear-gradient(to right, red, blue, red, blue);
+   
+}
+
+button:hover{
+    background:linear-gradient(to right, red,red, blue);
+    color: blue;
+}
+
+#title
+{
+    
+   
+    text-align: center;
+    font-style: oblique;
+    font-size:50px;
+    text-decoration-color: white;
+    color:blue;
+    text-shadow: 5px 3px red;
+    
+}
+
