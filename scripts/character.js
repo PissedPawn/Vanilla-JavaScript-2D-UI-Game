@@ -12,7 +12,7 @@ export default class Character {
       (this.moving = true),
       (this.spriteFolder = spriteFolder);
     (this.characterSprite = new Image()),
-      (this.characterSprite.src = spriteFolder + "officer_walk_strip.png");
+      (this.characterSprite.src = spriteFolder + "walk.png");
 
     this.faceDirection = "right";
     this.health = health;
@@ -50,8 +50,8 @@ export default class Character {
       this.height,
       this.pos.x,
       this.pos.y,
-      this.width * 2,
-      this.height * 2
+      this.width,
+      this.height
     );
   }
 

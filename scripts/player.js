@@ -5,30 +5,28 @@ export default class Player extends Character {
     super(pos, width, height, spriteFolder);
     this.event = new CustomEvent("onMeleeAttackRange");
   }
-  movePlayer(keys) {
-    if ((keys["ArrowUp"] || keys["w"]) && this.pos.y > 150) {
+  movePlayer(keys, target) {
+    if ((keys["ArrowUp"] || keys["w"])) {
       this.pos.y -= this.speed;
-      this.frameY = 3;
       this.moving = true;
     }
     if ((keys["ArrowDown"] || keys["s"]) && this.pos.y < 448) {
       this.pos.y += this.speed;
-      this.frameY = 0;
       this.moving = true;
     }
 
     if ((keys["ArrowLeft"] || keys["a"]) && this.pos.x > 12) {
       this.pos.x -= this.speed;
-      this.frameY = 1;
       this.moving = true;
     }
 
     if ((keys["ArrowRight"] || keys["d"]) && this.pos.x < 448) {
       this.pos.x += this.speed;
-      this.frameY = 2;
       this.moving = true;
       console.log(this.pos.x);
     }
+
+    this.invokeEvent(target)
 
     this.handleCharacterFrame();
   }
@@ -94,5 +92,20 @@ export default class Player extends Character {
         this.pos.y += this.speed;
       }
     }
+  }
+  invokeEvent(target) {
+    // console.log(this.collider.collided);
+    // console.log(`attacked : ${this.attacked}`);
+    let that = this;
+   
+      this.collider.checkHitCollision(
+        this.pos.x,
+        this.pos.y,
+        target,
+        function () {
+          document.dispatchEvent(that.event);
+         
+        }
+      );
   }
 }
