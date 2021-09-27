@@ -6,29 +6,55 @@ export default class Player extends Character {
     this.event = new CustomEvent("onMeleeAttackRange");
   }
   movePlayer(keys, target) {
-    if ((keys["ArrowUp"] || keys["w"])) {
+    if (keys["ArrowUp"] || keys["w"]) {
       this.pos.y -= this.speed;
+      this.characterSprite.src = this.spriteFolder + "walkUp.png";
+      this.faceDirection = "up";
       this.moving = true;
     }
-    if ((keys["ArrowDown"] || keys["s"]) && this.pos.y < 448) {
+    if ((keys["ArrowDown"] || keys["s"])) {
       this.pos.y += this.speed;
+      this.characterSprite.src = this.spriteFolder + "walkDown.png";
+      this.faceDirection = "down";
       this.moving = true;
     }
 
-    if ((keys["ArrowLeft"] || keys["a"]) && this.pos.x > 12) {
+    if ((keys["ArrowLeft"] || keys["a"])) {
       this.pos.x -= this.speed;
+      this.characterSprite.src = this.spriteFolder + "walkLeft.png";
+      this.faceDirection = "left";
       this.moving = true;
     }
 
-    if ((keys["ArrowRight"] || keys["d"]) && this.pos.x < 448) {
+    if ((keys["ArrowRight"] || keys["d"])) {
       this.pos.x += this.speed;
+      this.characterSprite.src = this.spriteFolder + "walk.png";
+      this.faceDirection = "right";
       this.moving = true;
       console.log(this.pos.x);
     }
 
-    this.invokeEvent(target)
+    this.invokeEvent(target);
+    if (this.moving == false) {
+      switch (this.faceDirection) {
+        case "up":
+          this.characterSprite.src = this.spriteFolder + "idleUp.png";
 
-    this.handleCharacterFrame();
+          break;
+        case "down":
+          this.characterSprite.src = this.spriteFolder + "idleDown.png";
+
+          break;
+        case "right":
+          this.characterSprite.src = this.spriteFolder + "idleRight.png";
+
+          break;
+        case "left":
+          this.characterSprite.src = this.spriteFolder + "idleLeft.png";
+
+          break;
+      }
+    }
   }
 
   stopMove() {
@@ -97,15 +123,14 @@ export default class Player extends Character {
     // console.log(this.collider.collided);
     // console.log(`attacked : ${this.attacked}`);
     let that = this;
-   
-      this.collider.checkHitCollision(
-        this.pos.x,
-        this.pos.y,
-        target,
-        function () {
-          document.dispatchEvent(that.event);
-         
-        }
-      );
+
+    this.collider.checkHitCollision(
+      this.pos.x,
+      this.pos.y,
+      target,
+      function () {
+        document.dispatchEvent(that.event);
+      }
+    );
   }
 }

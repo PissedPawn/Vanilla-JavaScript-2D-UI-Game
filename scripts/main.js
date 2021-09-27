@@ -108,6 +108,7 @@ let playClicked;
 
 const keys = [];
 game.getAllInputs(keys);
+player.stopMove();
 
 //gameLoop.startAnimating(game.drawGameScreen());
 

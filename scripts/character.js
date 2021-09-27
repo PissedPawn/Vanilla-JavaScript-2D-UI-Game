@@ -9,12 +9,12 @@ export default class Character {
       (this.frameX = 0),
       (this.frameY = 0),
       (this.speed = 10),
-      (this.moving = true),
+      (this.moving = false),
       (this.spriteFolder = spriteFolder);
     (this.characterSprite = new Image()),
-      (this.characterSprite.src = spriteFolder + "walk.png");
+      (this.characterSprite.src = spriteFolder + "idleUp.png");
 
-    this.faceDirection = "right";
+    this.faceDirection = "up";
     this.health = health;
     this.collider = new Collider(this);
   }
@@ -23,6 +23,8 @@ export default class Character {
     switch (this.faceDirection) {
       //a bit buggy but works fine
       case "right":
+
+      case "down":
         if (
           this.frameX < this.characterSprite.width / this.width - 1 &&
           this.moving
@@ -32,6 +34,7 @@ export default class Character {
         break;
 
       case "left":
+      case "up":
         if (this.frameX > 0 && this.moving) this.frameX--;
         else this.frameX = this.characterSprite.width / this.width - 1;
         break;
