@@ -10,6 +10,22 @@ export default class Object {
     (this.width = this.characterSprite.width),
       (this.height = this.characterSprite.height);
     this.drew = false;
+    this.event = new CustomEvent("onCollided");
+  }
+
+  invokeEvent(target) {
+    // console.log(this.collider.collided);
+    // console.log(`attacked : ${this.attacked}`);
+    let that = this;
+
+    this.collider.checkHitCollision(
+      this.pos.x,
+      this.pos.y,
+      target,
+      function () {
+        document.dispatchEvent(that.event);
+      }
+    );
   }
 
   draw(ctx) {

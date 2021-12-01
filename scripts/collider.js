@@ -8,22 +8,28 @@ export default class Collider {
   }
 
   checkHitCollision(x, y, target, func) {
-    if (
-      target.pos.x + target.width < this.pos.x ||
-      target.pos.x > this.pos.x + this.width ||
-      target.pos.y + target.height < this.pos.y ||
-      target.pos.y > this.pos.y + this.height
-    ) {
-      this.collided = false;
-      console.log("not Colliding");
+    // if (
+    //   target.pos.x + target.width < this.pos.x ||
+    //   target.pos.x > this.pos.x + this.width ||
+    //   target.pos.y + target.height < this.pos.y ||
+    //   target.pos.y > this.pos.y + this.height
+    // ) {
+    //   this.collided = false;
+    //   console.log("not Colliding");
+    // } else {
+    //   if (this.collided == false) {
+    //     this.collided = true;
+    //     func();
+
+    //     target.pos.y = this.pos.y - target.height;
+    //   }
+    // }
+
+    if (target.pos.y > this.pos.y + 16) {
+      this.collided = true;
+      console.log("colliding");
+      target.pos.y = this.pos.y + target.height;
     } else {
-      if (this.collided == false) {
-        this.collided = true;
-        console.log("entered");
-        func();
-      }
     }
-    this.pos.x = x;
-    this.pos.y = y;
   }
 }

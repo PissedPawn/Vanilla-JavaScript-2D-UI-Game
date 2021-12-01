@@ -82,8 +82,9 @@ export default class Enemy extends Character {
     if ((this.pos.x > min) & (this.faceDirection == "left")) {
       this.pos.x -= this.speed;
       this.characterSprite.src = this.spriteFolder + "walkLeft.png";
+ 
 
-      if (this.pos.x <= min + 10) this.faceDirection = "right";
+      if (this.pos.x ==min) this.faceDirection = "right";
 
       return;
     }
@@ -91,8 +92,8 @@ export default class Enemy extends Character {
     if (this.pos.x <= max && this.faceDirection == "right") {
       this.pos.x += this.speed;
       this.characterSprite.src = this.spriteFolder + "walk.png";
-      if (this.pos.x >= max + 10) this.faceDirection = "left";
-
+      if (this.pos.x == max) this.faceDirection = "left";
+    
       return;
     }
   }

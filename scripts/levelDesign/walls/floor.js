@@ -15,8 +15,8 @@ export default class Floor extends Object {
       this.height,
       this.pos.x,
       this.pos.y,
-      this.width / 4,
-      this.height / 4
+      this.width ,
+      this.height
     );
   }
 }

@@ -8,8 +8,8 @@ export default class Character {
       (this.height = height),
       (this.frameX = 0),
       (this.frameY = 0),
-      (this.speed = 10),
-      (this.moving = false),
+      (this.speed = 2),
+      (this.moving = true),
       (this.spriteFolder = spriteFolder);
     (this.characterSprite = new Image()),
       (this.characterSprite.src = spriteFolder + "idleUp.png");
