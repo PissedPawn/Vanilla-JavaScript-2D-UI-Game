@@ -159,7 +159,7 @@ const configButtons = () => {
 };
 
 const equipItemFromBelt = () => {
-console.log("equipped");
+  console.log("equipped");
 }
 
 playButton.addEventListener("click", clickedPlay);
@@ -208,10 +208,11 @@ function animate() {
     if (playClicked) {
       game.drawGameScreen();
 
-      player.movePlayer(keys);
+      ///player.movePlayer(keys);
       // player.moveToMousePos(game.mouseX, game.mouseY);
-      // player.draw(ctx);
-      player.handleCharacterFrame();
+      player.moveTopDownWithMouse(keys, new Vector2(game.mouseX, game.mouseY));
+     // player.draw(ctx);
+      //player.handleCharacterFrame();
       player.drawRotated(game.canvas, game.ctx, player.getRotation(new Vector2(game.mouseX, game.mouseY)))
 
 

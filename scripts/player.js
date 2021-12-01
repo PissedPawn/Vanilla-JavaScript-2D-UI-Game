@@ -61,14 +61,30 @@ export default class Player extends Character {
     }
   }
 
-
-  moveTopDownWithMouse(keys)
-  {
+  moveTopDownWithMouse(keys, mousePos) {
     if (keys["ArrowUp"] || keys["w"]) {
-      this.pos.y -= this.speed;
-      this.characterSprite.src = this.spriteFolder + "walkUp.png";
-      this.faceDirection = "up";
-      this.moving = true;
+      let threshold = 2;
+      let velocityX = mousePos.x - this.pos.x;
+      let velocityY = (-mousePos.y) - this.pos.y;
+      if ((velocityX < threshold && velocityX > -threshold) || velocityX == 0) {
+
+      }
+      else {
+
+        this.pos.x += velocityX / Math.abs(velocityX) * threshold;
+      }
+      if ((velocityY < threshold && velocityY > -threshold) || velocityY == 0) {
+
+      }
+
+      else {
+        this.pos.y += velocityY / Math.abs(velocityY) * threshold;
+      }
+
+      console.log(this.pos.x)
+      console.log(this.pos.y)
+
+
     }
   }
 
@@ -105,7 +121,7 @@ export default class Player extends Character {
 
     // let degree = Math.acos(right[0] * direction[0] + right[1] * direction[1]) * 180 / Math.PI;
     let degree = -Math.atan2(det, dot)
-   // console.log(degree* 180 / Math.PI);
+    // console.log(degree* 180 / Math.PI);
     return degree; // in radians
 
 
@@ -120,7 +136,8 @@ export default class Player extends Character {
   drawRotated(canvas, ctx, degrees) {
 
     ctx.save();
-    ctx.translate(200, 250);
+    ctx.translate(this.pos.x, this.pos.y);
+    // console.log(this.pos)
 
     ctx.rotate(degrees);
 
@@ -183,6 +200,7 @@ export default class Player extends Character {
       }
     }
   }
+
   invokeEvent(target) {
     // console.log(this.collider.collided);
     // console.log(`attacked : ${this.attacked}`);
